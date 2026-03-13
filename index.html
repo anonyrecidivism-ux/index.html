@@ -3,80 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>recidivismnational // static profile</title>
+    <title>recidivismnational // hub</title>
+    <script src="https://unpkg.com/scrollreveal"></script>
     <style>
         :root {
             --bg: #050505;
-            --accent: #ff5c00; /* mullvad orange */
+            --accent: #ffffff;
             --block-bg: #0c0c0c;
-            --text: #c0c0c0;
-            --dim: #444;
+            --text: #909090;
+            --dim: #333;
             --border: #1a1a1a;
+            --star-gold: #ffd700;
         }
 
         body {
             background-color: var(--bg);
             color: var(--text);
-            font-family: 'consolas', 'monaco', 'courier new', monospace;
+            font-family: 'consolas', 'monaco', monospace;
             margin: 0;
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         .container {
             width: 100%;
-            max-width: 500px;
+            max-width: 480px;
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 20px;
             margin-top: 30px;
         }
 
-        /* блок header / а-ля муллвад с сайта контра */
-        .mullvad-header {
-            border: 1px solid var(--accent);
-            padding: 20px;
-            background: rgba(255, 92, 0, 0.03);
+        /* header */
+        .header-card {
+            border: 1px solid var(--border);
+            padding: 30px 10px;
+            background: var(--block-bg);
             text-align: center;
-            position: relative;
         }
 
-        .mullvad-header::before {
-            content: "mullvad_net_secured";
-            position: absolute;
-            top: -7px;
-            left: 10px;
-            background: var(--bg);
-            padding: 0 5px;
-            font-size: 10px;
-            color: var(--accent);
-            text-transform: lowercase;
+        .linux-tux {
+            width: 45px;
+            margin-bottom: 15px;
+            filter: invert(1);
         }
 
-        .mullvad-icon {
-            width: 40px;
-            fill: var(--accent);
-            margin-bottom: 10px;
-        }
-
-        .nickname {
+        .nick {
             display: block;
-            font-size: 16px;
+            font-size: 17px;
             color: #fff;
-            letter-spacing: 2px;
-            margin-bottom: 3px;
+            letter-spacing: 1px;
         }
 
-        .role {
-            font-size: 11px;
-            color: var(--dim);
-            text-transform: lowercase;
+        .cursor {
+            display: inline-block;
+            width: 7px;
+            height: 15px;
+            background: #fff;
+            animation: blink 1s infinite;
+            margin-left: 5px;
         }
 
-        /* системные блоки */
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* основной блок тг канала */
+        .tg-block {
+            border: 1px solid var(--accent);
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            transition: 0.3s;
+        }
+
+        .tg-block:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: scale(1.02);
+        }
+
+        /* секции */
         .section {
             background: var(--block-bg);
             border: 1px solid var(--border);
@@ -84,36 +93,33 @@
         }
 
         .section-title {
-            font-size: 11px;
+            font-size: 10px;
             color: var(--dim);
             text-transform: lowercase;
-            margin-bottom: 12px;
-            display: block;
+            margin-bottom: 15px;
             border-bottom: 1px solid var(--border);
-            padding-bottom: 4px;
+            padding-bottom: 5px;
+            display: block;
         }
 
-        .data-row {
+        /* карточки услуг */
+        .service {
             display: flex;
             justify-content: space-between;
-            font-size: 12px;
-            margin-bottom: 6px;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #151515;
         }
 
-        .label { color: var(--dim); }
-        .value { color: #fff; text-align: right; }
+        .service:last-child { border: none; }
 
-        .bio-text {
-            font-size: 12px;
-            margin: 0;
-            color: #aaa;
-        }
+        .s-name { font-size: 12px; color: #ccc; }
+        .s-price { font-size: 11px; color: var(--star-gold); font-weight: bold; }
 
         .footer {
-            margin: 40px 0;
+            margin: 50px 0;
             font-size: 9px;
             color: #1a1a1a;
-            text-align: center;
             letter-spacing: 4px;
         }
     </style>
@@ -122,46 +128,53 @@
 
     <div class="container">
 
-        <div class="mullvad-header">
-            <svg class="mullvad-icon" viewBox="0 0 100 100">
-                <path d="M50 15c-19.3 0-35 15.7-35 35s15.7 35 35 35 35-15.7 35-35-15.7-35-35-35zm0 60c-13.8 0-25-11.2-25-25s11.2-25 25-25 25 11.2 25 25-11.2 25-25 25zm10-35h-20v5h20v-5z"/>
+        <div class="header-card reveal">
+            <svg class="linux-tux" viewBox="0 0 20 20">
+                <path d="M10 2c-1.8 0-3.3 1.5-3.3 3.3c0 .7.2 1.4.6 1.9C5.3 8.3 4 10.5 4 13c0 .6.1 1.1.2 1.7c-.5.3-.9.8-.9 1.4c0 .9.8 1.7 1.7 1.7c.4 0 .7-.1 1-.3c1.2.9 2.6 1.5 4.1 1.5s2.9-.6 4.1-1.5c.3.2.6.3 1 .3c.9 0 1.7-.8 1.7-1.7c0-.6-.4-1.1-.9-1.4c.1-.6.2-1.1.2-1.7c0-2.5-1.3-4.7-3.3-5.8c.4-.5.6-1.2.6-1.9c0-1.8-1.5-3.3-3.3-3.3z"/>
             </svg>
-            <span class="nickname">@recidivismnational</span>
-            <span class="role">infrastructure_security_analyst</span>
+            <span class="nick">@recidivismnational<span class="cursor"></span></span>
         </div>
 
-        <div class="section">
-            <span class="section-title">01_env_specs</span>
-            <div class="data-row">
-                <span class="label">operating_system:</span>
-                <span class="value">arch linux x86_64</span>
+        <a href="https://t.me/brtnniaa" class="tg-block reveal">
+            <div style="font-size: 10px; color: var(--text); margin-bottom: 5px; text-transform: lowercase;">source_link</div>
+            <div style="font-size: 14px; letter-spacing: 1px;">мой официальный телеграмм канал</div>
+        </a>
+
+        <div class="section reveal">
+            <span class="section-title">services</span>
+            <div class="service">
+                <span class="s-name">разработка сканеров</span>
+                <span class="s-price">200 ⭐</span>
             </div>
-            <div class="data-row">
-                <span class="label">main_lang:</span>
-                <span class="value">python / bash</span>
+            <div class="service">
+                <span class="s-name">создание ботов</span>
+                <span class="s-price">200 ⭐</span>
             </div>
-            <div class="data-row">
-                <span class="label">network:</span>
-                <span class="value">wireguard (mullvad)</span>
-            </div>
-            <div class="data-row">
-                <span class="label">status:</span>
-                <span class="value">secured // no_logs</span>
+            <div class="service">
+                <span class="s-name">разработка сайтов</span>
+                <span class="s-price">200 ⭐</span>
             </div>
         </div>
 
-        <div class="section">
-            <span class="section-title">02_about</span>
-            <p class="bio-text">
-                независимый исследователь в области кибербезопасности. занимаюсь глубоким анализом инфраструктуры, поиском критических уязвимостей и автоматизацией процессов сбора данных. сторонник полной приватности и децентрализации.
-            </p>
+        <div class="section reveal">
+            <span class="section-title">system_logs</span>
+            <div style="font-size: 12px; color: #666; display: flex; justify-content: space-between;">
+                <span>os: arch linux</span>
+                <span>net: mullvad</span>
+            </div>
         </div>
 
     </div>
 
-    <div class="footer">
-        id_8353885924 // sessions_encrypted
-    </div>
+    <div class="footer">ID_8353885924 // NO_LOGS</div>
 
+    <script>
+        ScrollReveal().reveal('.reveal', { 
+            delay: 200, 
+            distance: '15px', 
+            origin: 'bottom', 
+            interval: 150 
+        });
+    </script>
 </body>
 </html>

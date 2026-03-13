@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>recidivismnational // static profile</title>
+    <style>
+        :root {
+            --bg: #050505;
+            --accent: #ff5c00; /* mullvad orange */
+            --block-bg: #0c0c0c;
+            --text: #c0c0c0;
+            --dim: #444;
+            --border: #1a1a1a;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'consolas', 'monaco', 'courier new', monospace;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.4;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        /* блок header / а-ля муллвад с сайта контра */
+        .mullvad-header {
+            border: 1px solid var(--accent);
+            padding: 20px;
+            background: rgba(255, 92, 0, 0.03);
+            text-align: center;
+            position: relative;
+        }
+
+        .mullvad-header::before {
+            content: "mullvad_net_secured";
+            position: absolute;
+            top: -7px;
+            left: 10px;
+            background: var(--bg);
+            padding: 0 5px;
+            font-size: 10px;
+            color: var(--accent);
+            text-transform: lowercase;
+        }
+
+        .mullvad-icon {
+            width: 40px;
+            fill: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .nickname {
+            display: block;
+            font-size: 16px;
+            color: #fff;
+            letter-spacing: 2px;
+            margin-bottom: 3px;
+        }
+
+        .role {
+            font-size: 11px;
+            color: var(--dim);
+            text-transform: lowercase;
+        }
+
+        /* системные блоки */
+        .section {
+            background: var(--block-bg);
+            border: 1px solid var(--border);
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 11px;
+            color: var(--dim);
+            text-transform: lowercase;
+            margin-bottom: 12px;
+            display: block;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 4px;
+        }
+
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+
+        .label { color: var(--dim); }
+        .value { color: #fff; text-align: right; }
+
+        .bio-text {
+            font-size: 12px;
+            margin: 0;
+            color: #aaa;
+        }
+
+        .footer {
+            margin: 40px 0;
+            font-size: 9px;
+            color: #1a1a1a;
+            text-align: center;
+            letter-spacing: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="mullvad-header">
+            <svg class="mullvad-icon" viewBox="0 0 100 100">
+                <path d="M50 15c-19.3 0-35 15.7-35 35s15.7 35 35 35 35-15.7 35-35-15.7-35-35-35zm0 60c-13.8 0-25-11.2-25-25s11.2-25 25-25 25 11.2 25 25-11.2 25-25 25zm10-35h-20v5h20v-5z"/>
+            </svg>
+            <span class="nickname">@recidivismnational</span>
+            <span class="role">infrastructure_security_analyst</span>
+        </div>
+
+        <div class="section">
+            <span class="section-title">01_env_specs</span>
+            <div class="data-row">
+                <span class="label">operating_system:</span>
+                <span class="value">arch linux x86_64</span>
+            </div>
+            <div class="data-row">
+                <span class="label">main_lang:</span>
+                <span class="value">python / bash</span>
+            </div>
+            <div class="data-row">
+                <span class="label">network:</span>
+                <span class="value">wireguard (mullvad)</span>
+            </div>
+            <div class="data-row">
+                <span class="label">status:</span>
+                <span class="value">secured // no_logs</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <span class="section-title">02_about</span>
+            <p class="bio-text">
+                независимый исследователь в области кибербезопасности. занимаюсь глубоким анализом инфраструктуры, поиском критических уязвимостей и автоматизацией процессов сбора данных. сторонник полной приватности и децентрализации.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        id_8353885924 // sessions_encrypted
+    </div>
+
+</body>
+</html>

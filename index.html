@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>recidivismnational // hub</title>
+    <title>recidivismnational // profile</title>
     <script src="https://unpkg.com/scrollreveal"></script>
     <style>
         :root {
@@ -26,6 +26,7 @@
             flex-direction: column;
             align-items: center;
             line-height: 1.5;
+            overflow-x: hidden;
         }
 
         .container {
@@ -69,7 +70,7 @@
 
         @keyframes blink { 50% { opacity: 0; } }
 
-        /* основной блок тг канала */
+        /* официальный канал */
         .tg-block {
             border: 1px solid var(--accent);
             background: rgba(255, 255, 255, 0.02);
@@ -100,6 +101,15 @@
             border-bottom: 1px solid var(--border);
             padding-bottom: 5px;
             display: block;
+        }
+
+        /* биография */
+        .bio-text {
+            font-size: 13px;
+            color: #ccc;
+            margin: 0;
+            text-align: left;
+            line-height: 1.6;
         }
 
         /* карточки услуг */
@@ -141,6 +151,13 @@
         </a>
 
         <div class="section reveal">
+            <span class="section-title">about_me</span>
+            <p class="bio-text">
+                независимый исследователь в области кибербезопасности и автоматизации. специализируюсь на анализе уязвимостей веб-инфраструктуры, создании кастомных инструментов для аудита безопасности и разработке telegram-ботов.
+            </p>
+        </div>
+
+        <div class="section reveal">
             <span class="section-title">services</span>
             <div class="service">
                 <span class="s-name">разработка сканеров</span>
@@ -157,23 +174,24 @@
         </div>
 
         <div class="section reveal">
-            <span class="section-title">system_logs</span>
-            <div style="font-size: 12px; color: #666; display: flex; justify-content: space-between;">
+            <span class="section-title">system_specs</span>
+            <div style="font-size: 11px; color: #666; display: flex; justify-content: space-between;">
                 <span>os: arch linux</span>
-                <span>net: mullvad</span>
+                <span>net: mullvad wireguard</span>
             </div>
         </div>
 
     </div>
 
-    <div class="footer">ID_8353885924 // NO_LOGS</div>
+    <div class="footer">SESSION_ID_8353885924 // NO_LOGS // 2026</div>
 
     <script>
         ScrollReveal().reveal('.reveal', { 
-            delay: 200, 
+            delay: 150, 
             distance: '15px', 
             origin: 'bottom', 
-            interval: 150 
+            interval: 100,
+            duration: 800
         });
     </script>
 </body>

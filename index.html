@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>recidivismnational // profile</title>
+    <title>recidivismnational // static</title>
     <script src="https://unpkg.com/scrollreveal"></script>
     <style>
         :root {
@@ -38,7 +38,6 @@
             margin-top: 30px;
         }
 
-        /* header */
         .header-card {
             border: 1px solid var(--border);
             padding: 30px 10px;
@@ -70,8 +69,7 @@
 
         @keyframes blink { 50% { opacity: 0; } }
 
-        /* официальный канал */
-        .tg-block {
+        .link-block {
             border: 1px solid var(--accent);
             background: rgba(255, 255, 255, 0.02);
             padding: 20px;
@@ -79,14 +77,19 @@
             text-decoration: none;
             color: #fff;
             transition: 0.3s;
+            display: block;
         }
 
-        .tg-block:hover {
+        .link-block:hover {
             background: rgba(255, 255, 255, 0.05);
-            transform: scale(1.02);
+            transform: scale(1.01);
         }
 
-        /* секции */
+        .gh-block {
+            border: 1px solid #333;
+            background: #000;
+        }
+
         .section {
             background: var(--block-bg);
             border: 1px solid var(--border);
@@ -103,16 +106,18 @@
             display: block;
         }
 
-        /* биография */
-        .bio-text {
-            font-size: 13px;
-            color: #ccc;
-            margin: 0;
-            text-align: left;
-            line-height: 1.6;
+        .tag {
+            display: inline-block;
+            font-size: 11px;
+            border: 1px solid #222;
+            padding: 4px 10px;
+            margin: 0 5px 5px 0;
+            color: #eee;
         }
 
-        /* карточки услуг */
+        .skill-tag { border-color: var(--dim); }
+        .tool-tag { border-color: #331111; color: #ff5555; } /* выделение инструментов */
+
         .service {
             display: flex;
             justify-content: space-between;
@@ -122,9 +127,16 @@
         }
 
         .service:last-child { border: none; }
-
         .s-name { font-size: 12px; color: #ccc; }
         .s-price { font-size: 11px; color: var(--star-gold); font-weight: bold; }
+
+        .project-item {
+            font-size: 12px;
+            color: #555;
+            border: 1px dashed #222;
+            padding: 10px;
+            text-align: center;
+        }
 
         .footer {
             margin: 50px 0;
@@ -145,16 +157,49 @@
             <span class="nick">@recidivismnational<span class="cursor"></span></span>
         </div>
 
-        <a href="https://t.me/brtnniaa" class="tg-block reveal">
-            <div style="font-size: 10px; color: var(--text); margin-bottom: 5px; text-transform: lowercase;">source_link</div>
-            <div style="font-size: 14px; letter-spacing: 1px;">мой официальный телеграмм канал</div>
+        <a href="https://t.me/brtnniaa" class="link-block reveal">
+            <div style="font-size: 10px; color: var(--text); margin-bottom: 5px;">source_link</div>
+            <div style="font-size: 14px;">мой официальный телеграмм канал</div>
+        </a>
+
+        <a href="https://github.com/anonyrecidivism-ux" class="link-block gh-block reveal">
+            <div style="font-size: 10px; color: #555; margin-bottom: 5px;">repository_storage</div>
+            <div style="font-size: 14px; color: #ccc;">мой официальный github</div>
         </a>
 
         <div class="section reveal">
-            <span class="section-title">about_me</span>
-            <p class="bio-text">
-                независимый исследователь в области кибербезопасности и автоматизации. специализируюсь на анализе уязвимостей веб-инфраструктуры, создании кастомных инструментов для аудита безопасности и разработке telegram-ботов.
+            <span class="section-title">biography</span>
+            <p style="font-size: 13px; color: #ccc; margin: 0;">
+                стек: arch linux / python. специализируюсь на написании сетевого софта, автоматизации аудита веб-ресурсов и создании телеграм-инфраструктуры. 
             </p>
+        </div>
+
+        <div class="section reveal">
+            <span class="section-title">technical_skills</span>
+            <div class="tag skill-tag">python / bash</div>
+            <div class="tag skill-tag">network_security</div>
+            <div class="tag skill-tag">api_development</div>
+            <div class="tag skill-tag">web_auditing</div>
+            <div class="tag skill-tag">osint</div>
+            <div class="tag skill-tag">linux_administration</div>
+        </div>
+
+        <div class="section reveal">
+            <span class="section-title">linux_toolkit</span>
+            <div class="tag tool-tag">nmap</div>
+            <div class="tag tool-tag">sqlmap</div>
+            <div class="tag tool-tag">ffuf</div>
+            <div class="tag tool-tag">metasploit</div>
+            <div class="tag tool-tag">wireshark</div>
+            <div class="tag tool-tag">burp_suite</div>
+            <div class="tag tool-tag">netcat</div>
+        </div>
+
+        <div class="section reveal">
+            <span class="section-title">active_projects</span>
+            <div class="project-item">
+                [ loading_new_bot_project... ]
+            </div>
         </div>
 
         <div class="section reveal">
@@ -173,26 +218,12 @@
             </div>
         </div>
 
-        <div class="section reveal">
-            <span class="section-title">system_specs</span>
-            <div style="font-size: 11px; color: #666; display: flex; justify-content: space-between;">
-                <span>os: arch linux</span>
-                <span>net: mullvad wireguard</span>
-            </div>
-        </div>
-
     </div>
 
-    <div class="footer">SESSION_ID_8353885924 // NO_LOGS // 2026</div>
+    <div class="footer">ID_8353885924 // ARCH_SYSTEM // 2026</div>
 
     <script>
-        ScrollReveal().reveal('.reveal', { 
-            delay: 150, 
-            distance: '15px', 
-            origin: 'bottom', 
-            interval: 100,
-            duration: 800
-        });
+        ScrollReveal().reveal('.reveal', { delay: 150, distance: '15px', origin: 'bottom', interval: 100 });
     </script>
 </body>
 </html>

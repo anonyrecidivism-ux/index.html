@@ -26,6 +26,7 @@
             flex-direction: column;
             align-items: center;
             line-height: 1.5;
+            overflow-x: hidden;
         }
 
         .container {
@@ -34,6 +35,59 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+            margin-top: 30px;
+        }
+
+        .header-card {
+            border: 1px solid var(--border);
+            padding: 30px 10px;
+            background: var(--block-bg);
+            text-align: center;
+        }
+
+        .linux-tux {
+            width: 45px;
+            margin-bottom: 15px;
+            filter: invert(1);
+        }
+
+        .nick {
+            display: block;
+            font-size: 17px;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 7px;
+            height: 15px;
+            background: #fff;
+            animation: blink 1s infinite;
+            margin-left: 5px;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .link-block {
+            border: 1px solid var(--accent);
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            transition: 0.3s;
+            display: block;
+        }
+
+        .link-block:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: scale(1.01);
+        }
+
+        .gh-block {
+            border: 1px solid #333;
+            background: #000;
         }
 
         .section {
@@ -52,28 +106,6 @@
             display: block;
         }
 
-        .header-card {
-            border: 1px solid var(--border);
-            padding: 30px 10px;
-            background: var(--block-bg);
-            text-align: center;
-        }
-
-        .nick { color: #fff; font-size: 17px; letter-spacing: 1px; }
-
-        .link-block {
-            border: 1px solid var(--border);
-            background: #000;
-            padding: 15px;
-            text-align: center;
-            text-decoration: none;
-            color: #ccc;
-            display: block;
-            font-size: 13px;
-        }
-
-        .link-block:hover { border-color: var(--accent); color: #fff; }
-
         .tag {
             display: inline-block;
             font-size: 11px;
@@ -89,15 +121,29 @@
             border: 1px solid #222;
             background: #000;
             padding: 15px;
+            text-align: left;
+        }
+
+        .manual-box {
+            background: #080808;
+            border: 1px solid #1a1a1a;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 10px;
+            color: #888;
         }
 
         .service {
             display: flex;
             justify-content: space-between;
-            font-size: 12px;
-            padding: 10px 0;
+            align-items: center;
+            padding: 12px 0;
             border-bottom: 1px solid #151515;
         }
+
+        .service:last-child { border: none; }
+        .s-name { font-size: 12px; color: #ccc; }
+        .s-price { font-size: 11px; color: var(--star-gold); font-weight: bold; }
 
         .footer {
             margin: 50px 0;
@@ -112,51 +158,76 @@
     <div class="container">
 
         <div class="header-card reveal">
-            <span class="nick">@recidivismnational</span>
+            <svg class="linux-tux" viewBox="0 0 20 20">
+                <path d="M10 2c-1.8 0-3.3 1.5-3.3 3.3c0 .7.2 1.4.6 1.9C5.3 8.3 4 10.5 4 13c0 .6.1 1.1.2 1.7c-.5.3-.9.8-.9 1.4c0 .9.8 1.7 1.7 1.7c.4 0 .7-.1 1-.3c1.2.9 2.6 1.5 4.1 1.5s2.9-.6 4.1-1.5c.3.2.6.3 1 .3c.9 0 1.7-.8 1.7-1.7c0-.6-.4-1.1-.9-1.4c.1-.6.2-1.1.2-1.7c0-2.5-1.3-4.7-3.3-5.8c.4-.5.6-1.2.6-1.9c0-1.8-1.5-3.3-3.3-3.3z"/>
+            </svg>
+            <span class="nick">@recidivismnational<span class="cursor"></span></span>
         </div>
 
         <div class="section reveal">
             <span class="section-title">biography</span>
             <p style="font-size: 13px; color: #ccc; margin: 0;">
-                стек: arch linux / python. разработка сетевого софта, автоматизация аудита веб-ресурсов и создание телеграм-инфраструктуры.
+                стек: arch linux / python. специализируюсь на написании сетевого софта, автоматизации аудита веб-ресурсов и создании телеграм-инфраструктуры. 
             </p>
         </div>
 
-        <div class="section reveal" style="padding: 0; border: none; background: transparent; display: flex; flex-direction: column; gap: 10px;">
-            <a href="https://t.me/brtnniaa" class="link-block">telegram_channel</a>
-            <a href="https://github.com/anonyrecidivism-ux" class="link-block">github_repository</a>
-        </div>
+        <a href="https://t.me/brtnniaa" class="link-block reveal">
+            <div style="font-size: 10px; color: var(--text); margin-bottom: 5px;">source_link</div>
+            <div style="font-size: 14px;">мой официальный телеграмм канал</div>
+        </a>
+
+        <a href="https://github.com/anonyrecidivism-ux" class="link-block gh-block reveal">
+            <div style="font-size: 10px; color: #555; margin-bottom: 5px;">repository_storage</div>
+            <div style="font-size: 14px; color: #ccc;">мой официальный github</div>
+        </a>
 
         <div class="section reveal">
             <span class="section-title">linux_toolkit</span>
             <div class="tag tool-tag">nmap</div>
             <div class="tag tool-tag">sqlmap</div>
             <div class="tag tool-tag">ffuf</div>
+            <div class="tag tool-tag">metasploit</div>
+            <div class="tag tool-tag">wireshark</div>
+            <div class="tag tool-tag">burp_suite</div>
             <div class="tag tool-tag">netcat</div>
         </div>
 
         <div class="section reveal">
-            <span class="section-title">tech_stack</span>
-            <div class="tag">python</div>
-            <div class="tag">bash</div>
-            <div class="tag">network_scanners</div>
-            <div class="tag">arch_linux</div>
+            <span class="section-title">technical_skills</span>
+            <div class="tag skill-tag">python / bash</div>
+            <div class="tag skill-tag">network_security</div>
+            <div class="tag skill-tag">api_development</div>
+            <div class="tag skill-tag">web_auditing</div>
+            <div class="tag skill-tag">osint</div>
+            <div class="tag skill-tag">linux_administration</div>
         </div>
 
         <div class="section reveal">
             <span class="section-title">active_projects</span>
             <div class="project-item">
-                <div style="color: var(--accent); font-size: 14px; margin-bottom: 8px;">[ kontra_chaos_bot ]</div>
-                <p style="font-size: 11px; color: #666; margin-bottom: 10px;">инструмент для стресс-теста чатов.</p>
-                <a href="https://t.me/recidivismspambot" style="color: #00ff41; text-decoration: none; font-size: 11px;">> @recidivismspambot</a>
+                <div style="color: var(--accent); font-size: 14px; margin-bottom: 5px;">[ kontra_chaos_bot ]</div>
+                <p style="font-size: 11px; color: #666; margin: 0;">инструмент для анализа пропускной способности чатов.</p>
+                <div class="manual-box">
+                    usage: add to chat -> /start_chaos
+                </div>
+                <a href="https://t.me/recidivismspambot" style="color: #00ff41; text-decoration: none; font-size: 11px; font-family: monospace;">> @recidivismspambot</a>
             </div>
         </div>
 
         <div class="section reveal">
             <span class="section-title">services</span>
-            <div class="service"><span>разработка сканеров</span><span class="s-price">200 ⭐</span></div>
-            <div class="service"><span>создание ботов</span><span class="s-price">200 ⭐</span></div>
-            <div class="service"><span>разработка сайтов</span><span class="s-price">200 ⭐</span></div>
+            <div class="service">
+                <span class="s-name">разработка сканеров</span>
+                <span class="s-price">200 ⭐</span>
+            </div>
+            <div class="service">
+                <span class="s-name">создание ботов</span>
+                <span class="s-price">200 ⭐</span>
+            </div>
+            <div class="service">
+                <span class="s-name">разработка сайтов</span>
+                <span class="s-price">200 ⭐</span>
+            </div>
         </div>
 
     </div>
@@ -164,8 +235,9 @@
     <div class="footer">ID_8353885924 // ARCH_SYSTEM // 2026</div>
 
     <script>
-        ScrollReveal().reveal('.reveal', { delay: 100, distance: '10px', origin: 'bottom' });
+        ScrollReveal().reveal('.reveal', { delay: 150, distance: '15px', origin: 'bottom', interval: 100 });
     </script>
 </body>
 </html>
+
 

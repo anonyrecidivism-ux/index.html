@@ -116,6 +116,7 @@
         }
 
         .tool-tag { border-color: #331111; color: #ff5555; }
+        .skill-tag { border-color: #1a1a1a; color: #ccc; }
 
         .project-item {
             border: 1px solid #222;
@@ -126,6 +127,17 @@
         }
 
         .project-item:last-child { margin-bottom: 0; }
+
+        .work-report {
+            font-size: 11px;
+            color: #aaa;
+        }
+
+        .work-report span {
+            color: #00ff41;
+            display: block;
+            margin-bottom: 5px;
+        }
 
         .manual-box {
             background: #080808;
@@ -147,17 +159,6 @@
         .service:last-child { border: none; }
         .s-name { font-size: 12px; color: #ccc; }
         .s-price { font-size: 11px; color: var(--star-gold); font-weight: bold; }
-
-        .work-report {
-            font-size: 11px;
-            color: #aaa;
-        }
-
-        .work-report span {
-            color: #00ff41;
-            display: block;
-            margin-bottom: 5px;
-        }
 
         .footer {
             margin: 50px 0;
@@ -185,6 +186,34 @@
             </p>
         </div>
 
+        <div class="section reveal">
+            <span class="section-title">works</span>
+            
+            <div class="project-item">
+                <div style="color: var(--accent); font-size: 14px; margin-bottom: 10px;">[ case_02: api_integrity_breach ]</div>
+                <div class="work-report">
+                    <span>> status: exploitation_successful</span>
+                    в ходе аудита выявлены критические уязвимости в публичных эндпоинтах (/wp-json/v2/posts). отсутствие валидации сессий позволило реализовать несанкционированный доступ к методам POST.
+                    <br><br>
+                    результат: успешная инъекция контента в разделы новостей, расписания учителей и навигационное меню. продемонстрирована полная потеря контроля над целостностью данных ресурса.
+                </div>
+                <div class="manual-box">
+                    target: krykhivtsi-lyceum.if.ua // vector: rest_api_bypass // action: content_injection
+                </div>
+            </div>
+
+            <div class="project-item" style="border-top: 1px solid #1a1a1a; padding-top: 15px;">
+                <div style="color: var(--accent); font-size: 14px; margin-bottom: 10px;">[ case_01: passive_waf_auditing ]</div>
+                <div class="work-report">
+                    <span>> status: analysis_completed</span>
+                    обнаружена активная защита WAF с использованием JS-обфускации. система фильтрует запросы без графического окружения, проверяя параметры window.outerWidth и navigator.webdriver. 
+                </div>
+                <div class="manual-box">
+                    target: lyceum.if.ua // result: bypass_required_js_execution
+                </div>
+            </div>
+        </div>
+
         <a href="https://t.me/brtnniaa" class="link-block reveal">
             <div style="font-size: 10px; color: var(--text); margin-bottom: 5px;">source_link</div>
             <div style="font-size: 14px;">мой официальный телеграмм канал</div>
@@ -194,22 +223,6 @@
             <div style="font-size: 10px; color: #555; margin-bottom: 5px;">repository_storage</div>
             <div style="font-size: 14px; color: #ccc;">мой официальный github</div>
         </a>
-
-        <div class="section reveal">
-            <span class="section-title">works</span>
-            <div class="project-item">
-                <div style="color: var(--accent); font-size: 14px; margin-bottom: 10px;">[ case_01: lyceum_auditing ]</div>
-                <div class="work-report">
-                    <span>> status: passive_analysis_completed</span>
-                    обнаружена активная защита WAF с использованием JS-обфускации. система фильтрует запросы без графического окружения, проверяя параметры window.outerWidth и navigator.webdriver. 
-                    <br><br>
-                    выявлен алгоритм генерации динамического токена 'wsidchk' через математические JS-выражения и временные метки.
-                </div>
-                <div class="manual-box">
-                    target: lyceum.if.ua // result: bypass_required_js_execution
-                </div>
-            </div>
-        </div>
 
         <div class="section reveal">
             <span class="section-title">linux_toolkit</span>
@@ -288,6 +301,5 @@
     </script>
 </body>
 </html>
-
 
 

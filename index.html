@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -188,7 +189,7 @@
 
         <div class="section reveal">
             <span class="section-title">works</span>
-            
+
             <div class="project-item">
                 <div style="color: var(--accent); font-size: 14px; margin-bottom: 10px;">[ case_02: api_integrity_breach ]</div>
                 <div class="work-report">
@@ -210,6 +211,25 @@
                 </div>
                 <div class="manual-box">
                     target: lyceum.if.ua // result: bypass_required_js_execution
+                </div>
+            </div>
+
+            <div class="project-item" style="border-top: 1px solid #ff4d4d; padding-top: 15px; margin-top: 15px;">
+                <div style="color: #ff4d4d; font-size: 14px; margin-bottom: 10px;">[ case_03: full_chain_api_exploitation ]</div>
+                <div class="work-report">
+                    <span style="color: #ff4d4d;">> status: CRITICAL_BREACH_LOGGED</span>
+                    Объект: itosvita.com. Защита: Cloudflare WAF + Weblium SaaS.
+                    <br><br>
+                    <b>Этап 1: Recon & Bypass.</b> Проведен аудит инфраструктуры. Попытки атак на xmlrpc.php пресечены. Выявлена архитектура облачного конструктора, скрывающая реальный IP.
+                    <br><br>
+                    <b>Этап 2: Reverse Engineering.</b> Глубокий анализ JS-ядра (core.min.js). Парсингом извлечен скрытый ключ проекта (SiteID): <i>02d33698-b03c-4f23-babc-d000541a6bd9</i>.
+                    <br><br>
+                    <b>Этап 3: API Injection.</b> Обнаружен глобальный шлюз <i>forms.weblium.com/api/v1/form/submit</i>. Реализована прямая инъекция данных в обход WAF через доверенные эндпоинты платформы.
+                    <br><br>
+                    <b>Результат:</b> Успешная доставка Stored XSS пейлоада во внутреннюю CRM-систему. Код исполняется в браузере администратора при просмотре заявок.
+                </div>
+                <div class="manual-box" style="border-color: #441111; color: #ff8888; font-size: 9px;">
+                    METHOD: Blind_Stored_XSS // PATH: /api/v1/form/submit // ID: 02d33698...bd9 // STATUS: EXPLOITED
                 </div>
             </div>
         </div>
@@ -301,5 +321,4 @@
     </script>
 </body>
 </html>
-
 

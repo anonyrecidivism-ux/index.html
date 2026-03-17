@@ -16,6 +16,17 @@
             --star-gold: #ffd700;
         }
 
+        /* Добавил фиксированный фон для канваса */
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Чтобы был под контентом */
+            pointer-events: none; /* Чтобы не мешал кликам по ссылкам */
+        }
+
         body {
             background-color: var(--bg);
             color: var(--text);
@@ -36,6 +47,8 @@
             flex-direction: column;
             gap: 20px;
             margin-top: 30px;
+            position: relative;
+            z-index: 1; /* Чтобы контент был над частицами */
         }
 
         .header-card {
@@ -174,10 +187,14 @@
             font-size: 9px;
             color: #1a1a1a;
             letter-spacing: 4px;
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
+
+    <canvas id="particleCanvas"></canvas>
 
     <div class="container">
 
@@ -329,6 +346,48 @@
     <div class="footer">ID_8353885924 // ARCH_SYSTEM // 2026</div>
 
     <script>
+        // АНИМАЦИЯ ЧАСТИЦ
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function init() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles = [];
+            for (let i = 0; i < 80; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    size: Math.random() * 1.2
+                });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', init);
+        init();
+        draw();
+
+        // ТВОЙ ОРИГИНАЛЬНЫЙ SCROLL REVEAL
         ScrollReveal().reveal('.reveal', { delay: 150, distance: '15px', origin: 'bottom', interval: 100 });
     </script>
 </body>

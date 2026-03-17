@@ -148,22 +148,13 @@
             color: #888;
         }
 
-        .terminal-box {
-            background: #000;
-            border: 1px solid #331111;
-            padding: 10px;
-            margin: 10px 0;
-            font-family: 'consolas', monospace;
+        .terminal-log {
+            background: #050000;
+            border: 1px solid #220000;
+            padding: 8px;
+            margin: 8px 0;
             font-size: 9px;
-            color: #ff5555;
-            overflow-x: auto;
-        }
-
-        .time-stamp {
-            font-size: 9px;
-            color: #444;
-            float: right;
-            margin-top: -5px;
+            color: #662222;
         }
 
         .service {
@@ -208,51 +199,49 @@
             <span class="section-title">works</span>
 
             <div class="project-item">
-                <span class="time-stamp">datetime: 2026-03-12 14:42</span>
                 <div style="color: var(--accent); font-size: 14px; margin-bottom: 10px;">[ case_02: api_integrity_breach ]</div>
                 <div class="work-report">
-                    <span>> status: exploitation_successful</span>
+                    <span>> uploaded_at: 2026-03-12 14:42 / status: successful</span>
                     в ходе аудита выявлены критические уязвимости в публичных эндпоинтах (/wp-json/v2/posts). отсутствие валидации сессий позволило реализовать несанкционированный доступ к методам POST.
                     <br><br>
                     результат: успешная инъекция контента в разделы новостей, расписания учителей и навигационное меню.
                 </div>
                 <div class="manual-box">
-                    target: krykhivtsi-lyceum.if.ua // vector: rest_api_bypass
+                    target: krykhivtsi-lyceum.if.ua // vector: rest_api_bypass // action: content_injection
                 </div>
             </div>
 
             <div class="project-item" style="border-top: 1px solid #1a1a1a; padding-top: 15px;">
-                <span class="time-stamp">datetime: 2026-03-14 09:15</span>
                 <div style="color: var(--accent); font-size: 14px; margin-bottom: 10px;">[ case_01: passive_waf_auditing ]</div>
                 <div class="work-report">
-                    <span>> status: analysis_completed</span>
+                    <span>> uploaded_at: 2026-03-14 09:15 / status: completed</span>
                     обнаружена активная защита WAF с использованием JS-обфускации. система фильтрует запросы без графического окружения, проверяя параметры window.outerWidth и navigator.webdriver. 
                 </div>
                 <div class="manual-box">
-                    target: lyceum.if.ua // result: bypass_required
+                    target: lyceum.if.ua // result: bypass_required_js_execution
                 </div>
             </div>
 
-            <div class="project-item" style="border-top: 1px solid #ff4d4d; padding-top: 15px; margin-top: 15px;">
-                <span class="time-stamp" style="color: #662222;">datetime: 2026-03-17 15:30</span>
-                <div style="color: #ff4d4d; font-size: 14px; margin-bottom: 10px;">[ case_03: full_chain_api_exploitation ]</div>
+            <div class="project-item" style="border-top: 1px solid #1a1a1a; padding-top: 15px;">
+                <div style="color: var(--accent); font-size: 14px; margin-bottom: 10px;">[ case_03: full_chain_api_exploitation ]</div>
                 <div class="work-report">
-                    <span style="color: #ff4d4d;">> status: CRITICAL_BREACH_LOGGED</span>
-                    <b>Объект: itosvita.com.</b>
+                    <span>> uploaded_at: 2026-03-17 15:30 / status: EXPLOITED</span>
+                    <b>объект: itosvita.com. защита: cloudflare + weblium.</b>
                     <br><br>
-                    1. <b>Bypass:</b> Обнаружен глобальный API-шлюз Weblium.
-                    <br>2. <b>Recon:</b> Извлечен SiteID проекта: <i>02d33698-b03c-4f23-babc-d000541a6bd9</i>.
-                    <br>3. <b>Exploit:</b> Прямая инъекция Stored XSS пейлоада в CRM базу лидов.
+                    <b>1. recon:</b> извлечение SiteID (02d33698-b03c-4f23-babc-d000541a6bd9) через реверс-инжиниринг JS-ядра.
+                    <br><b>2. bypass:</b> обнаружение прямого API-шлюза forms.weblium.com в обход WAF фильтрации.
+                    <br><b>3. exploit:</b> внедрение Blind Stored XSS пейлоада напрямую в базу CRM.
                     <br><br>
-                    <b>Доказательство (Terminal Log):</b>
-                    <div class="terminal-box">
-                        [*] Testing SiteID: 02d33698...bd9 on global API...<br>
-                        [>] Response Code: 200 | Body: {"success":true}<br>
-                        [!!!] EXPLOIT DELIVERED. PERSISTENT PAYLOAD STORED IN CRM.
+                    <b>evidence:</b>
+                    <div class="terminal-log">
+                        [*] target: itosvita.com<br>
+                        [*] site_id: 02d33698...bd9<br>
+                        [*] payload_sent: success (200 OK)<br>
+                        [!!!] xss_persistent_stored
                     </div>
                 </div>
-                <div class="manual-box" style="border-color: #441111; color: #ff8888; font-size: 9px;">
-                    METHOD: Blind_Stored_XSS // ID: 02d33698...bd9 // STATUS: EXPLOITED
+                <div class="manual-box">
+                    target: itosvita.com // method: api_direct_injection // result: crm_access
                 </div>
             </div>
         </div>
@@ -293,7 +282,7 @@
 
             <div class="project-item">
                 <div style="color: var(--accent); font-size: 14px; margin-bottom: 5px;">[ social_dorker_scanner ]</div>
-                <p style="font-size: 11px; color: #666; margin: 0;">автоматизированный поиск цифрового следа по никнейму.</p>
+                <p style="font-size: 11px; color: #666; margin: 0;">автоматизированный поиск цифрового следа и профилей по никнейму.</p>
                 <div class="manual-box">
                     usage: /start -> send target_nickname
                 </div>
@@ -302,7 +291,7 @@
 
             <div class="project-item">
                 <div style="color: var(--accent); font-size: 14px; margin-bottom: 5px;">[ sentinel_ip_scanner ]</div>
-                <p style="font-size: 11px; color: #666; margin: 0;">профессиональный аудит сетевых узлов.</p>
+                <p style="font-size: 11px; color: #666; margin: 0;">профессиональный аудит сетевых узлов и поиск открытых портов.</p>
                 <div class="manual-box">
                     usage: /start -> send ip/domain
                 </div>
@@ -311,7 +300,7 @@
 
             <div class="project-item">
                 <div style="color: var(--accent); font-size: 14px; margin-bottom: 5px;">[ kontra_chaos_bot ]</div>
-                <p style="font-size: 11px; color: #666; margin: 0;">инструмент для анализа чатов.</p>
+                <p style="font-size: 11px; color: #666; margin: 0;">инструмент для анализа пропускной способности чатов.</p>
                 <div class="manual-box">
                     usage: add to chat -> /start_chaos
                 </div>

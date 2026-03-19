@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>recidivismnational</title>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 
@@ -420,11 +420,25 @@ setInterval(()=>{
     String(s%60).padStart(2,'0');
 },1000);
 
-if(typeof ScrollReveal !== 'undefined') {
-  ScrollReveal().reveal('.reveal',{delay:60,distance:'18px',origin:'bottom',interval:60,duration:750,easing:'cubic-bezier(0.16,1,0.3,1)'});
-} else {
-  document.querySelectorAll('.reveal').forEach(el => el.style.opacity = '1');
-}
+// animate on scroll manually
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if(e.isIntersecting) {
+      setTimeout(() => {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }, i * 60);
+      observer.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.1});
+reveals.forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(18px)';
+  el.style.transition = 'opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1)';
+  observer.observe(el);
+});
 </script>
 </body>
 </html> 
